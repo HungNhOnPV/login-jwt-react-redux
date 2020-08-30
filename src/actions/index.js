@@ -18,7 +18,7 @@ export const userPostFetch = (user) => {
       })
       .then((res) => {
         console.log(res);
-        document.cookie = `token=${res.data.access_token}`;
+        document.cookie = `${res.data.access_token}`;
         dispatch(loginUser(res.user));
       })
       .catch((err) => {
@@ -43,7 +43,7 @@ export const userLoginFetch = (user) => {
       })
       .then((res) => {
         console.log(res);
-        document.cookie = `token=${res.data.access_token}`;
+        document.cookie = `${res.data.access_token}`;
         dispatch(loginUser(res.user));
       })
       .catch((err) => {
@@ -55,9 +55,10 @@ export const userLoginFetch = (user) => {
 export const getProfileFetch = () => {
   return (dispatch) => {
     const token = document.cookie;
+    console.log(token);
     if (token) {
       return axios
-        .post("http://localhost:8000", {
+        .get("http://localhost:8000/auth/login", {
           headers: {
             "x-apikey": "123456789",
             "Access-Control-Allow-Origin": "*",
@@ -70,11 +71,10 @@ export const getProfileFetch = () => {
         .then((res) => {
           console.log(res);
           if (res.message) {
-            document.cookie = "token=";
+            document.cookie = "";
           } else {
             dispatch(loginUser(res.user));
           }
-          dispatch(loginUser(res.user));
         })
         .catch((err) => {
           console.log("err:" + err);
