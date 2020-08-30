@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getProfileFetch} from './actions';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 
 class App extends Component {
@@ -20,16 +21,20 @@ class App extends Component {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/signup">About</Link>
+            <Link to="/signup">Register</Link>
           </li>
           <li>
-            <Link to="/login">Topics</Link>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/logout">Logout</Link>
           </li>
         </ul>
 
         <Switch>
           <Route path="/signup" component={Signup}/>
           <Route path="/login" component={Login}/>
+          <Route path="/logout" component={Logout}/>
         </Switch>
       </div>
     </Router>
